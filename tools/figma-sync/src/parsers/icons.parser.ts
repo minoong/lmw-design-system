@@ -1,4 +1,4 @@
-import type { FigmaFile, FigmaComponent } from "../api/types.js";
+import type { FigmaFile } from '../api/types.js';
 
 export interface ParsedIcon {
   id: string;
@@ -11,19 +11,14 @@ export interface ParsedIcon {
  * Convert icon name to PascalCase component name
  */
 function toPascalCase(str: string): string {
-  return str
-    .replace(/[\/\-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
-    .replace(/^./, (c) => c.toUpperCase());
+  return str.replace(/[/\-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : '')).replace(/^./, (c) => c.toUpperCase());
 }
 
 /**
  * Parse icon components from Figma file
  * Expects icons to be prefixed with "icon/" or "Icon/"
  */
-export function parseIcons(
-  file: FigmaFile,
-  iconPrefix: string = "icon/"
-): ParsedIcon[] {
+export function parseIcons(file: FigmaFile, iconPrefix: string = 'icon/'): ParsedIcon[] {
   const icons: ParsedIcon[] = [];
   const prefixLower = iconPrefix.toLowerCase();
 

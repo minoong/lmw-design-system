@@ -12,34 +12,34 @@
   outline: none;
 
   // Sizes
-  &[data-size="sm"] {
+  &[data-size='sm'] {
     padding: var(--ds-spacing-1) var(--ds-spacing-3);
     font-size: var(--ds-font-size-sm);
     height: 32px;
 
-    [data-slot="icon"] {
+    [data-slot='icon'] {
       width: 16px;
       height: 16px;
     }
   }
 
-  &[data-size="md"] {
+  &[data-size='md'] {
     padding: var(--ds-spacing-2) var(--ds-spacing-4);
     font-size: var(--ds-font-size-md);
     height: 40px;
 
-    [data-slot="icon"] {
+    [data-slot='icon'] {
       width: 20px;
       height: 20px;
     }
   }
 
-  &[data-size="lg"] {
+  &[data-size='lg'] {
     padding: var(--ds-spacing-3) var(--ds-spacing-6);
     font-size: var(--ds-font-size-lg);
     height: 48px;
 
-    [data-slot="icon"] {
+    [data-slot='icon'] {
       width: 24px;
       height: 24px;
     }
@@ -55,12 +55,13 @@
 
   // Focus state
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--ds-bg-primary, #fff),
+    box-shadow:
+      0 0 0 2px var(--ds-bg-primary, #fff),
       0 0 0 4px var(--ds-border-focus, var(--ds-color-primary-500));
   }
 
   // Icon slot
-  [data-slot="icon"] {
+  [data-slot='icon'] {
     display: inline-flex;
     align-items: center;
     justify-content: center;

@@ -1,5 +1,5 @@
-import { readFileSync, existsSync } from "fs";
-import { resolve } from "path";
+import { readFileSync, existsSync } from 'fs';
+import { resolve } from 'path';
 
 export interface FigmaConfig {
   figmaFileKey: string;
@@ -16,22 +16,22 @@ export interface FigmaConfig {
   };
   naming: {
     prefix: string;
-    caseStyle: "kebab" | "camel" | "pascal";
+    caseStyle: 'kebab' | 'camel' | 'pascal';
   };
   icons: {
     componentPrefix: string;
-    format: "svg" | "png";
+    format: 'svg' | 'png';
     optimizeSvg: boolean;
   };
 }
 
 const DEFAULT_CONFIG: FigmaConfig = {
-  figmaFileKey: "",
+  figmaFileKey: '',
   packages: {
-    tokens: "./packages/tokens/generated",
-    typography: "./packages/typography/generated",
-    icons: "./packages/icons/generated",
-    themes: "./packages/themes/generated",
+    tokens: './packages/tokens/generated',
+    typography: './packages/typography/generated',
+    icons: './packages/icons/generated',
+    themes: './packages/themes/generated',
   },
   sync: {
     variables: true,
@@ -39,12 +39,12 @@ const DEFAULT_CONFIG: FigmaConfig = {
     icons: true,
   },
   naming: {
-    prefix: "ds",
-    caseStyle: "kebab",
+    prefix: 'ds',
+    caseStyle: 'kebab',
   },
   icons: {
-    componentPrefix: "icon/",
-    format: "svg",
+    componentPrefix: 'icon/',
+    format: 'svg',
     optimizeSvg: true,
   },
 };
@@ -53,17 +53,15 @@ const DEFAULT_CONFIG: FigmaConfig = {
  * Load figma.config.json from project root
  */
 export function loadConfig(rootDir: string = process.cwd()): FigmaConfig {
-  const configPath = resolve(rootDir, "figma.config.json");
+  const configPath = resolve(rootDir, 'figma.config.json');
 
   if (!existsSync(configPath)) {
-    console.warn(
-      `Warning: figma.config.json not found at ${configPath}. Using defaults.`
-    );
+    console.warn(`Warning: figma.config.json not found at ${configPath}. Using defaults.`);
     return DEFAULT_CONFIG;
   }
 
   try {
-    const content = readFileSync(configPath, "utf-8");
+    const content = readFileSync(configPath, 'utf-8');
     const userConfig = JSON.parse(content) as Partial<FigmaConfig>;
 
     return {

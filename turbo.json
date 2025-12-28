@@ -1,6 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalEnv": ["FIGMA_ACCESS_TOKEN"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

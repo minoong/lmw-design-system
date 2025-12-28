@@ -1,5 +1,5 @@
 // Utilities
-export { Slot, composeRefs, useComposedRefs } from "./utils";
+export { Slot, composeRefs, useComposedRefs } from './utils';
 
 // Button Primitive
 export {
@@ -10,4 +10,4 @@ export {
   type ButtonLabelProps,
   type ButtonSize,
   type ButtonContextValue,
-} from "./Button";
+} from './Button';

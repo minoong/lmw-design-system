@@ -79,19 +79,26 @@ tokens → typography → themes
 ### Component Architecture (Radix Patterns)
 
 **Primitives** - Headless compound components:
+
 ```tsx
 <Button.Root size="md">
-  <Button.Icon><IconHome /></Button.Icon>
+  <Button.Icon>
+    <IconHome />
+  </Button.Icon>
   <Button.Label>Home</Button.Label>
 </Button.Root>
 ```
 
 **Components** - Styled versions using primitives + tokens:
+
 ```tsx
-<Button variant="primary" size="md">Click me</Button>
+<Button variant="primary" size="md">
+  Click me
+</Button>
 ```
 
 Key patterns:
+
 - `asChild` prop for render delegation (Slot pattern)
 - `data-*` attributes for state-based styling
 - Context for state sharing between compound parts
@@ -101,6 +108,7 @@ Key patterns:
 Files in `packages/*/generated/` are auto-generated from Figma. Do not edit manually.
 
 Header indicates auto-generation:
+
 ```typescript
 /**
  * AUTO-GENERATED FILE - DO NOT EDIT
@@ -114,14 +122,15 @@ Design tokens are exposed as SCSS files with CSS custom properties:
 
 ```scss
 // Import design system styles in your app
-@use "@lmw-design-system/tokens/scss";
-@use "@lmw-design-system/typography/scss";
-@use "@lmw-design-system/themes/scss/light";
-@use "@lmw-design-system/themes/scss/dark";  // optional
-@use "@lmw-design-system/components/css";
+@use '@lmw-design-system/tokens/scss';
+@use '@lmw-design-system/typography/scss';
+@use '@lmw-design-system/themes/scss/light';
+@use '@lmw-design-system/themes/scss/dark'; // optional
+@use '@lmw-design-system/components/css';
 ```
 
 **Token Variables:**
+
 ```scss
 --ds-color-primary-500
 --ds-spacing-md
@@ -130,6 +139,7 @@ Design tokens are exposed as SCSS files with CSS custom properties:
 ```
 
 **Theme Variables:**
+
 ```scss
 --ds-bg-primary
 --ds-fg-primary
@@ -137,8 +147,9 @@ Design tokens are exposed as SCSS files with CSS custom properties:
 ```
 
 **Typography Mixins:**
+
 ```scss
-@use "@lmw-design-system/typography/scss" as typography;
+@use '@lmw-design-system/typography/scss' as typography;
 
 .custom-heading {
   @include typography.heading-base;

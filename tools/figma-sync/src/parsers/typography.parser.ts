@@ -1,4 +1,4 @@
-import type { FigmaFile, FigmaStyle, FigmaNode } from "../api/types.js";
+import type { FigmaFile, FigmaNode } from '../api/types.js';
 
 export interface ParsedTypography {
   name: string;
@@ -14,21 +14,18 @@ export interface ParsedTypography {
  */
 function toKebabCase(str: string): string {
   return str
-    .replace(/\//g, "-")
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[\s_]+/g, "-")
+    .replace(/\//g, '-')
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
     .toLowerCase();
 }
 
 /**
  * Find text node with matching style key
  */
-function findTextNodeByStyleKey(
-  nodes: FigmaNode[],
-  styleKey: string
-): FigmaNode | null {
+function findTextNodeByStyleKey(nodes: FigmaNode[], styleKey: string): FigmaNode | null {
   for (const node of nodes) {
-    if (node.type === "TEXT") {
+    if (node.type === 'TEXT') {
       return node;
     }
     if (node.children) {
@@ -46,13 +43,10 @@ export function parseTypography(file: FigmaFile): ParsedTypography[] {
   const textStyles: ParsedTypography[] = [];
 
   for (const [key, style] of Object.entries(file.styles)) {
-    if (style.styleType !== "TEXT") continue;
+    if (style.styleType !== 'TEXT') continue;
 
     // Find a text node that uses this style
-    const textNode = findTextNodeByStyleKey(
-      file.document.children,
-      key
-    );
+    const textNode = findTextNodeByStyleKey(file.document.children, key);
 
     if (textNode?.style) {
       textStyles.push({

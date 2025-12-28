@@ -1,19 +1,13 @@
-import type {
-  FigmaFile,
-  FigmaVariablesResponse,
-  FigmaImagesResponse,
-} from "./types.js";
+import type { FigmaFile, FigmaVariablesResponse, FigmaImagesResponse } from './types.js';
 
-const FIGMA_API_BASE = "https://api.figma.com/v1";
+const FIGMA_API_BASE = 'https://api.figma.com/v1';
 
 export class FigmaClient {
   private accessToken: string;
 
   constructor(accessToken: string) {
     if (!accessToken) {
-      throw new Error(
-        "FIGMA_ACCESS_TOKEN is required. Set it in your environment variables."
-      );
+      throw new Error('FIGMA_ACCESS_TOKEN is required. Set it in your environment variables.');
     }
     this.accessToken = accessToken;
   }
@@ -23,7 +17,7 @@ export class FigmaClient {
 
     const response = await fetch(url, {
       headers: {
-        "X-Figma-Token": this.accessToken,
+        'X-Figma-Token': this.accessToken,
       },
     });
 
@@ -53,9 +47,7 @@ export class FigmaClient {
    * Get local variables (Design Tokens)
    */
   async getVariables(fileKey: string): Promise<FigmaVariablesResponse> {
-    return this.request<FigmaVariablesResponse>(
-      `/files/${fileKey}/variables/local`
-    );
+    return this.request<FigmaVariablesResponse>(`/files/${fileKey}/variables/local`);
   }
 
   /**
@@ -65,26 +57,22 @@ export class FigmaClient {
     fileKey: string,
     nodeIds: string[],
     options: {
-      format?: "svg" | "png" | "jpg" | "pdf";
+      format?: 'svg' | 'png' | 'jpg' | 'pdf';
       scale?: number;
-    } = {}
+    } = {},
   ): Promise<FigmaImagesResponse> {
-    const { format = "svg", scale = 1 } = options;
-    const ids = nodeIds.join(",");
+    const { format = 'svg', scale = 1 } = options;
+    const ids = nodeIds.join(',');
 
-    return this.request<FigmaImagesResponse>(
-      `/images/${fileKey}?ids=${encodeURIComponent(ids)}&format=${format}&scale=${scale}`
-    );
+    return this.request<FigmaImagesResponse>(`/images/${fileKey}?ids=${encodeURIComponent(ids)}&format=${format}&scale=${scale}`);
   }
 
   /**
    * Get specific nodes from file
    */
   async getNodes(fileKey: string, nodeIds: string[]): Promise<FigmaFile> {
-    const ids = nodeIds.join(",");
-    return this.request<FigmaFile>(
-      `/files/${fileKey}/nodes?ids=${encodeURIComponent(ids)}`
-    );
+    const ids = nodeIds.join(',');
+    return this.request<FigmaFile>(`/files/${fileKey}/nodes?ids=${encodeURIComponent(ids)}`);
   }
 
   /**
@@ -102,8 +90,7 @@ export function createFigmaClient(): FigmaClient {
   const token = process.env.FIGMA_ACCESS_TOKEN;
   if (!token) {
     throw new Error(
-      "FIGMA_ACCESS_TOKEN environment variable is not set. " +
-        "Create a personal access token at https://www.figma.com/developers/api#access-tokens"
+      'FIGMA_ACCESS_TOKEN environment variable is not set. ' + 'Create a personal access token at https://www.figma.com/developers/api#access-tokens',
     );
   }
   return new FigmaClient(token);

@@ -1,5 +1,5 @@
-import type { ParsedTokenCollection } from "../parsers/variables.parser.js";
-import type { ParsedTypography } from "../parsers/typography.parser.js";
+import type { ParsedTokenCollection } from '../parsers/variables.parser.js';
+import type { ParsedTypography } from '../parsers/typography.parser.js';
 
 /**
  * Convert kebab-case to camelCase
@@ -20,21 +20,18 @@ export function generateTokensTS(collections: ParsedTokenCollection[]): string {
     lines.push(`export const ${constName} = {`);
 
     for (const token of collection.tokens) {
-      const key = toCamelCase(token.name.replace(collection.name + "-", ""));
-      const value =
-        typeof token.value === "string" ? `"${token.value}"` : token.value;
+      const key = toCamelCase(token.name.replace(collection.name + '-', ''));
+      const value = typeof token.value === 'string' ? `"${token.value}"` : token.value;
       lines.push(`  "${key}": ${value},`);
     }
 
-    lines.push("} as const;");
-    lines.push("");
-    lines.push(
-      `export type ${constName.charAt(0).toUpperCase() + constName.slice(1)} = typeof ${constName};`
-    );
-    lines.push("");
+    lines.push('} as const;');
+    lines.push('');
+    lines.push(`export type ${constName.charAt(0).toUpperCase() + constName.slice(1)} = typeof ${constName};`);
+    lines.push('');
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 /**
@@ -49,18 +46,18 @@ export function generateTypographyTS(typography: ParsedTypography[]): string {
     families.add(t.fontFamily);
   }
 
-  lines.push("export const fontFamily = {");
+  lines.push('export const fontFamily = {');
   let familyIndex = 0;
   for (const family of families) {
-    const key = familyIndex === 0 ? "primary" : `alt${familyIndex}`;
+    const key = familyIndex === 0 ? 'primary' : `alt${familyIndex}`;
     lines.push(`  ${key}: "${family}",`);
     familyIndex++;
   }
-  lines.push("} as const;");
-  lines.push("");
+  lines.push('} as const;');
+  lines.push('');
 
   // Typography presets
-  lines.push("export const typographyPresets = {");
+  lines.push('export const typographyPresets = {');
 
   for (const t of typography) {
     const key = toCamelCase(t.name);
@@ -70,13 +67,13 @@ export function generateTypographyTS(typography: ParsedTypography[]): string {
     lines.push(`    fontWeight: ${t.fontWeight},`);
     lines.push(`    lineHeight: ${t.lineHeight.toFixed(2)},`);
     lines.push(`    letterSpacing: ${t.letterSpacing},`);
-    lines.push("  },");
+    lines.push('  },');
   }
 
-  lines.push("} as const;");
-  lines.push("");
-  lines.push("export type TypographyPresets = typeof typographyPresets;");
-  lines.push("");
+  lines.push('} as const;');
+  lines.push('');
+  lines.push('export type TypographyPresets = typeof typographyPresets;');
+  lines.push('');
 
-  return lines.join("\n");
+  return lines.join('\n');
 }

@@ -3,7 +3,7 @@ name: Figma Design System Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 1-5" # Weekdays at 9 AM KST (0 AM UTC)
+    - cron: '0 0 * * 1-5' # Weekdays at 9 AM KST (0 AM UTC)
 
 env:
   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
@@ -19,8 +19,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -60,8 +60,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(tokens): sync design tokens from Figma"
-          title: "Design System Sync"
+          commit-message: 'chore(tokens): sync design tokens from Figma'
+          title: 'Design System Sync'
           body: |
             ## Auto-generated from Figma
 

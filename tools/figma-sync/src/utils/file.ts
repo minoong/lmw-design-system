@@ -1,5 +1,5 @@
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "fs";
-import { dirname } from "path";
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
+import { dirname } from 'path';
 
 /**
  * Generate auto-generated file header
@@ -12,15 +12,15 @@ export function generateHeader(): string {
  */`;
 }
 
-const AUTO_GENERATED_HEADER = generateHeader() + "\n\n";
-const AUTO_GENERATED_CSS_HEADER = generateHeader() + "\n\n";
+const AUTO_GENERATED_HEADER = generateHeader() + '\n\n';
+const AUTO_GENERATED_CSS_HEADER = generateHeader() + '\n\n';
 
 /**
  * Write a TypeScript file with auto-generated header
  */
 export function writeGeneratedTS(filePath: string, content: string): void {
   ensureDir(filePath);
-  writeFileSync(filePath, AUTO_GENERATED_HEADER + content, "utf-8");
+  writeFileSync(filePath, AUTO_GENERATED_HEADER + content, 'utf-8');
   console.log(`  ✓ Generated: ${filePath}`);
 }
 
@@ -29,7 +29,7 @@ export function writeGeneratedTS(filePath: string, content: string): void {
  */
 export function writeGeneratedCSS(filePath: string, content: string): void {
   ensureDir(filePath);
-  writeFileSync(filePath, AUTO_GENERATED_CSS_HEADER + content, "utf-8");
+  writeFileSync(filePath, AUTO_GENERATED_CSS_HEADER + content, 'utf-8');
   console.log(`  ✓ Generated: ${filePath}`);
 }
 
@@ -38,7 +38,7 @@ export function writeGeneratedCSS(filePath: string, content: string): void {
  */
 export function writeGeneratedSCSS(filePath: string, content: string): void {
   ensureDir(filePath);
-  writeFileSync(filePath, content, "utf-8");
+  writeFileSync(filePath, content, 'utf-8');
   console.log(`  ✓ Generated: ${filePath}`);
 }
 
@@ -47,7 +47,7 @@ export function writeGeneratedSCSS(filePath: string, content: string): void {
  */
 export function writeJSON(filePath: string, data: unknown): void {
   ensureDir(filePath);
-  writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+  writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`  ✓ Generated: ${filePath}`);
 }
 
@@ -59,7 +59,7 @@ export function readJSON<T>(filePath: string): T | null {
     return null;
   }
   try {
-    const content = readFileSync(filePath, "utf-8");
+    const content = readFileSync(filePath, 'utf-8');
     return JSON.parse(content) as T;
   } catch {
     return null;

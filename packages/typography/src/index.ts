@@ -12,4 +12,4 @@ export {
   type LineHeight,
   type LetterSpacing,
   type TypographyPresets,
-} from "../generated/fonts";
+} from '../generated/fonts';

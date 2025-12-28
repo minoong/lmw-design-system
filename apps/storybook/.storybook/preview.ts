@@ -1,10 +1,10 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from '@storybook/react';
 
 // Import design system SCSS
-import "@lmw-design-system/tokens/scss";
-import "@lmw-design-system/typography/scss";
-import "@lmw-design-system/themes/scss/light";
-import "@lmw-design-system/components/css";
+import '@lmw-design-system/tokens/scss';
+import '@lmw-design-system/typography/scss';
+import '@lmw-design-system/themes/scss/light';
+import '@lmw-design-system/components/css';
 
 const preview: Preview = {
   parameters: {
@@ -15,21 +15,21 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: "light",
+      default: 'light',
       values: [
-        { name: "light", value: "#ffffff" },
-        { name: "dark", value: "#1f2937" },
+        { name: 'light', value: '#ffffff' },
+        { name: 'dark', value: '#1f2937' },
       ],
     },
   },
   globalTypes: {
     theme: {
-      description: "Theme",
-      defaultValue: "light",
+      description: 'Theme',
+      defaultValue: 'light',
       toolbar: {
-        title: "Theme",
-        icon: "paintbrush",
-        items: ["light", "dark"],
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: ['light', 'dark'],
         dynamicTitle: true,
       },
     },

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+storybook-static/
+
+# Generated files
+packages/*/generated/
+.turbo/
+
+# Lock files
+pnpm-lock.yaml
+
+# Cache
+.cache/
+*.tsbuildinfo

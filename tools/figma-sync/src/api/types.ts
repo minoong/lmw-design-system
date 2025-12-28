@@ -41,12 +41,12 @@ export interface FigmaComponent {
 export interface FigmaStyle {
   key: string;
   name: string;
-  styleType: "FILL" | "TEXT" | "EFFECT" | "GRID";
+  styleType: 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';
   description: string;
 }
 
 export interface FigmaPaint {
-  type: "SOLID" | "GRADIENT_LINEAR" | "GRADIENT_RADIAL" | "IMAGE";
+  type: 'SOLID' | 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'IMAGE';
   visible?: boolean;
   opacity?: number;
   color?: FigmaColor;
@@ -66,7 +66,7 @@ export interface FigmaGradientStop {
 }
 
 export interface FigmaEffect {
-  type: "DROP_SHADOW" | "INNER_SHADOW" | "LAYER_BLUR" | "BACKGROUND_BLUR";
+  type: 'DROP_SHADOW' | 'INNER_SHADOW' | 'LAYER_BLUR' | 'BACKGROUND_BLUR';
   visible: boolean;
   radius: number;
   color?: FigmaColor;
@@ -104,7 +104,7 @@ export interface FigmaVariable {
   name: string;
   key: string;
   variableCollectionId: string;
-  resolvedType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
+  resolvedType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
   valuesByMode: Record<string, FigmaVariableValue>;
   description: string;
   hiddenFromPublishing: boolean;
@@ -113,7 +113,7 @@ export interface FigmaVariable {
 }
 
 export interface FigmaVariableValue {
-  type?: "VARIABLE_ALIAS";
+  type?: 'VARIABLE_ALIAS';
   id?: string;
   // For COLOR type
   r?: number;

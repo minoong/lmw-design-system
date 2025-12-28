@@ -2,13 +2,13 @@
 
 ## 문서 정보
 
-| 항목 | 내용 |
-|------|------|
+| 항목       | 내용                           |
+| ---------- | ------------------------------ |
 | 프로젝트명 | Figma Design System Automation |
-| 버전 | 1.0.0 |
-| 작성일 | 2025-01-XX |
-| 작성자 | Frontend Team |
-| 상태 | Draft |
+| 버전       | 1.0.0                          |
+| 작성일     | 2025-01-XX                     |
+| 작성자     | Frontend Team                  |
+| 상태       | Draft                          |
 
 ---
 
@@ -28,6 +28,7 @@
 ### 1.3 범위
 
 **In Scope:**
+
 - Turborepo 기반 모노레포 구축
 - Figma Variables → 디자인 토큰 자동 생성
 - Figma Styles → 타이포그래피 시스템 추출
@@ -36,6 +37,7 @@
 - Claude.ai Figma MCP를 활용한 대화형 워크플로우
 
 **Out of Scope:**
+
 - Figma 컴포넌트 → React 컴포넌트 완전 자동 변환 (1차 버전)
 - Custom MCP 서버 구축 (필요시 2차 버전에서 검토)
 - 디자인 리뷰 자동화
@@ -46,31 +48,31 @@
 
 ### 2.1 Core Technologies
 
-| 영역 | 기술 | 버전 | 비고 |
-|------|------|------|------|
-| **Monorepo** | Turborepo | latest | 빌드 오케스트레이션 |
-| **Package Manager** | pnpm | 9.x | workspace 관리 |
-| **Versioning** | Changesets | 2.x | 버전/changelog 자동화 |
-| **Bundler** | Vite (library mode) | 6.x | 패키지 빌드 |
-| **Language** | TypeScript | 5.x | 타입 안전성 |
-| **UI Framework** | React | 18.x / 19.x | 컴포넌트 개발 |
+| 영역                | 기술                | 버전        | 비고                  |
+| ------------------- | ------------------- | ----------- | --------------------- |
+| **Monorepo**        | Turborepo           | latest      | 빌드 오케스트레이션   |
+| **Package Manager** | pnpm                | 9.x         | workspace 관리        |
+| **Versioning**      | Changesets          | 2.x         | 버전/changelog 자동화 |
+| **Bundler**         | Vite (library mode) | 6.x         | 패키지 빌드           |
+| **Language**        | TypeScript          | 5.x         | 타입 안전성           |
+| **UI Framework**    | React               | 18.x / 19.x | 컴포넌트 개발         |
 
 ### 2.2 Design System Integration
 
-| 영역 | 기술 | 용도 |
-|------|------|------|
-| **Design Source** | Figma (Professional) | 디자인 시스템 원본 |
-| **API** | Figma REST API | Variables, Styles, Components 추출 |
-| **대화형 연동** | Claude.ai + Figma MCP | 실시간 분석/코드 생성 |
+| 영역              | 기술                  | 용도                               |
+| ----------------- | --------------------- | ---------------------------------- |
+| **Design Source** | Figma (Professional)  | 디자인 시스템 원본                 |
+| **API**           | Figma REST API        | Variables, Styles, Components 추출 |
+| **대화형 연동**   | Claude.ai + Figma MCP | 실시간 분석/코드 생성              |
 
 ### 2.3 Component Architecture
 
-| 패턴 | 참조 | 설명 |
-|------|------|------|
-| **Compound Components** | Radix UI Primitives | Root + Context 패턴 |
-| **Headless UI** | Radix UI Primitives | 스타일 없는 동작만 제공 |
-| **asChild Pattern** | Radix Composition | 렌더링 위임 |
-| **Data Attributes** | Radix Styling Guide | 상태 기반 스타일링 |
+| 패턴                    | 참조                | 설명                    |
+| ----------------------- | ------------------- | ----------------------- |
+| **Compound Components** | Radix UI Primitives | Root + Context 패턴     |
+| **Headless UI**         | Radix UI Primitives | 스타일 없는 동작만 제공 |
+| **asChild Pattern**     | Radix Composition   | 렌더링 위임             |
+| **Data Attributes**     | Radix Styling Guide | 상태 기반 스타일링      |
 
 ---
 
@@ -271,11 +273,13 @@ design-system/
 **목적**: Figma Variables를 CSS/JS 토큰으로 변환
 
 **출력 포맷:**
+
 - CSS Custom Properties (런타임 테마 전환)
 - TypeScript 상수 (타입 안전성)
 - JSON (다른 플랫폼 공유)
 
 **토큰 계층:**
+
 ```
 primitive/          # 원시 값 (blue-500: #3B82F6)
 semantic/           # 의미 기반 (primary: blue-500)
@@ -287,13 +291,15 @@ component/          # 컴포넌트별 (button-bg: primary)
 **목적**: Radix UI 패턴 기반 Headless 컴포넌트
 
 **설계 원칙:**
+
 - Compound Component 패턴
 - Context를 통한 상태 공유
 - asChild prop으로 렌더링 위임
-- data-* 속성으로 상태 노출
+- data-\* 속성으로 상태 노출
 - WAI-ARIA 완전 준수
 
 **컴포넌트 구조 예시:**
+
 ```tsx
 // Button Primitive
 <Button.Root>
@@ -320,6 +326,7 @@ component/          # 컴포넌트별 (button-bg: primary)
 **목적**: Primitives + Tokens = Styled 컴포넌트
 
 **설계 원칙:**
+
 - Primitives 기반 구현
 - Tokens 참조로 스타일링
 - Variants (size, color, state)
@@ -455,6 +462,7 @@ packages/tokens/
    - 동일하면 스킵
 
 2. **Git Hook으로 수동 수정 방지**
+
    ```bash
    # pre-commit hook
    if [[ -n $(git diff --cached --name-only | grep "generated/") ]]; then
@@ -478,6 +486,7 @@ packages/tokens/
 ### 6.1 Turborepo 설정
 
 **turbo.json:**
+
 ```json
 {
   "$schema": "https://turbo.build/schema.json",
@@ -514,14 +523,16 @@ packages/tokens/
 ### 6.2 pnpm Workspace 설정
 
 **pnpm-workspace.yaml:**
+
 ```yaml
 packages:
-  - "packages/*"
-  - "apps/*"
-  - "tools/*"
+  - 'packages/*'
+  - 'apps/*'
+  - 'tools/*'
 ```
 
 **Root package.json:**
+
 ```json
 {
   "name": "design-system",
@@ -549,6 +560,7 @@ packages:
 ### 6.3 Changesets 설정
 
 **.changeset/config.json:**
+
 ```json
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
@@ -566,6 +578,7 @@ packages:
 ### 6.4 Vite Library Mode 설정
 
 **packages/tokens/vite.config.ts:**
+
 ```typescript
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
@@ -588,6 +601,7 @@ export default defineConfig({
 ```
 
 **packages/components/vite.config.ts:**
+
 ```typescript
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -595,10 +609,7 @@ import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({ rollupTypes: true }),
-  ],
+  plugins: [react(), dts({ rollupTypes: true })],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -622,6 +633,7 @@ export default defineConfig({
 ### 6.5 Figma Sync 설정
 
 **figma.config.json:**
+
 ```json
 {
   "figmaFileKey": "YOUR_FIGMA_FILE_KEY",
@@ -655,13 +667,14 @@ export default defineConfig({
 ### 7.1 Figma Sync Workflow
 
 **.github/workflows/figma-sync.yml:**
-```yaml
+
+````yaml
 name: Figma Design System Sync
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1-5'  # 평일 오전 9시 (KST)
+    - cron: '0 0 * * 1-5' # 평일 오전 9시 (KST)
 
 env:
   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
@@ -671,21 +684,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-          
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-          
+
       - run: pnpm install --frozen-lockfile
-      
+
       - name: Sync from Figma
         run: pnpm turbo run sync:figma
-        
+
       - name: Check for changes
         id: changes
         run: |
@@ -694,11 +707,11 @@ jobs:
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
-          
+
       - name: Build affected packages
         if: steps.changes.outputs.changed == 'true'
         run: pnpm turbo run build --filter='./packages/*'
-        
+
       - name: Create changeset
         if: steps.changes.outputs.changed == 'true'
         run: |
@@ -706,10 +719,10 @@ jobs:
           ---
           "@design-system/tokens": patch
           ---
-          
+
           chore: sync design tokens from Figma
           EOF
-          
+
       - name: Create Pull Request
         if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
@@ -719,9 +732,9 @@ jobs:
           title: '🎨 Design System Sync'
           body: |
             ## Auto-generated from Figma
-            
+
             This PR contains updated design tokens synced from Figma.
-            
+
             ### Changed Files
             ```
             $(git status --porcelain packages/*/generated)
@@ -731,11 +744,12 @@ jobs:
           labels: |
             design-system
             auto-generated
-```
+````
 
 ### 7.2 Release Workflow
 
 **.github/workflows/release.yml:**
+
 ```yaml
 name: Release
 
@@ -751,20 +765,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-          
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-          
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm turbo run build
       - run: pnpm turbo run test
-      
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
@@ -812,43 +826,33 @@ interface ButtonRootProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
   size?: 'sm' | 'md' | 'lg';
 }
 
-const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonRootProps>(
-  ({ children, disabled = false, size = 'md', asChild, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
-    
-    return (
-      <ButtonContext.Provider value={{ disabled, size }}>
-        <Comp
-          ref={ref}
-          disabled={disabled}
-          data-disabled={disabled ? '' : undefined}
-          data-size={size}
-          {...props}
-        >
-          {children}
-        </Comp>
-      </ButtonContext.Provider>
-    );
-  }
-);
+const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonRootProps>(({ children, disabled = false, size = 'md', asChild, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'button';
+
+  return (
+    <ButtonContext.Provider value={{ disabled, size }}>
+      <Comp ref={ref} disabled={disabled} data-disabled={disabled ? '' : undefined} data-size={size} {...props}>
+        {children}
+      </Comp>
+    </ButtonContext.Provider>
+  );
+});
 
 // Icon
 interface ButtonIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   asChild?: boolean;
 }
 
-const ButtonIcon = React.forwardRef<HTMLSpanElement, ButtonIconProps>(
-  ({ children, asChild, ...props }, ref) => {
-    const { size } = useButtonContext();
-    const Comp = asChild ? Slot : 'span';
-    
-    return (
-      <Comp ref={ref} data-size={size} {...props}>
-        {children}
-      </Comp>
-    );
-  }
-);
+const ButtonIcon = React.forwardRef<HTMLSpanElement, ButtonIconProps>(({ children, asChild, ...props }, ref) => {
+  const { size } = useButtonContext();
+  const Comp = asChild ? Slot : 'span';
+
+  return (
+    <Comp ref={ref} data-size={size} {...props}>
+      {children}
+    </Comp>
+  );
+});
 
 // Export
 export const Button = {
@@ -868,19 +872,17 @@ interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
 }
 
-export const Slot = React.forwardRef<HTMLElement, SlotProps>(
-  ({ children, ...props }, ref) => {
-    if (!React.isValidElement(children)) {
-      return null;
-    }
-    
-    return React.cloneElement(children, {
-      ...props,
-      ...children.props,
-      ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
-    });
+export const Slot = React.forwardRef<HTMLElement, SlotProps>(({ children, ...props }, ref) => {
+  if (!React.isValidElement(children)) {
+    return null;
   }
-);
+
+  return React.cloneElement(children, {
+    ...props,
+    ...children.props,
+    ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
+  });
+});
 
 function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
   return (node: T) => {
@@ -908,17 +910,9 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<typeof ButtonPrimit
   variant?: 'primary' | 'secondary' | 'ghost';
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', className, ...props }, ref) => {
-    return (
-      <ButtonPrimitive.Root
-        ref={ref}
-        className={`${styles.button} ${styles[variant]} ${className}`}
-        {...props}
-      />
-    );
-  }
-);
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ variant = 'primary', className, ...props }, ref) => {
+  return <ButtonPrimitive.Root ref={ref} className={`${styles.button} ${styles[variant]} ${className}`} {...props} />;
+});
 ```
 
 ```css
@@ -932,12 +926,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   transition: all 0.2s ease;
 }
 
-.button[data-size="sm"] {
+.button[data-size='sm'] {
   padding: var(--ds-spacing-xs) var(--ds-spacing-sm);
   font-size: var(--ds-font-size-sm);
 }
 
-.button[data-size="lg"] {
+.button[data-size='lg'] {
   padding: var(--ds-spacing-md) var(--ds-spacing-lg);
   font-size: var(--ds-font-size-lg);
 }
@@ -974,67 +968,67 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 ### Phase 1: 기반 구축 (2주)
 
-| 태스크 | 설명 | 담당 |
-|--------|------|------|
-| Turborepo 세팅 | 모노레포 초기 구조 | FE |
-| pnpm workspace | 패키지 의존성 설정 | FE |
-| Changesets 설정 | 버전 관리 자동화 | FE |
-| Vite 빌드 설정 | 패키지별 빌드 구성 | FE |
-| CI/CD 기본 | lint, test, build 파이프라인 | FE |
+| 태스크          | 설명                         | 담당 |
+| --------------- | ---------------------------- | ---- |
+| Turborepo 세팅  | 모노레포 초기 구조           | FE   |
+| pnpm workspace  | 패키지 의존성 설정           | FE   |
+| Changesets 설정 | 버전 관리 자동화             | FE   |
+| Vite 빌드 설정  | 패키지별 빌드 구성           | FE   |
+| CI/CD 기본      | lint, test, build 파이프라인 | FE   |
 
 ### Phase 2: Figma 연동 (2주)
 
-| 태스크 | 설명 | 담당 |
-|--------|------|------|
-| Figma API 클라이언트 | REST API 래퍼 | FE |
-| Variables Parser | 토큰 변환 로직 | FE |
-| CSS Generator | CSS Variables 생성 | FE |
-| TS Generator | TypeScript 상수 생성 | FE |
-| Icon Exporter | SVG → React 컴포넌트 | FE |
-| Sync Workflow | GitHub Actions 설정 | FE |
+| 태스크               | 설명                 | 담당 |
+| -------------------- | -------------------- | ---- |
+| Figma API 클라이언트 | REST API 래퍼        | FE   |
+| Variables Parser     | 토큰 변환 로직       | FE   |
+| CSS Generator        | CSS Variables 생성   | FE   |
+| TS Generator         | TypeScript 상수 생성 | FE   |
+| Icon Exporter        | SVG → React 컴포넌트 | FE   |
+| Sync Workflow        | GitHub Actions 설정  | FE   |
 
 ### Phase 3: 컴포넌트 개발 (4주)
 
-| 태스크 | 설명 | 담당 |
-|--------|------|------|
-| Primitives 설계 | Compound Component 기반 구조 | FE |
-| Button Primitive | 기본 버튼 컴포넌트 | FE |
-| Dialog Primitive | 모달/다이얼로그 | FE |
-| Select Primitive | 셀렉트박스 | FE |
-| Styled Components | Primitives + Tokens | FE |
-| Storybook 문서화 | 컴포넌트 문서 | FE |
+| 태스크            | 설명                         | 담당 |
+| ----------------- | ---------------------------- | ---- |
+| Primitives 설계   | Compound Component 기반 구조 | FE   |
+| Button Primitive  | 기본 버튼 컴포넌트           | FE   |
+| Dialog Primitive  | 모달/다이얼로그              | FE   |
+| Select Primitive  | 셀렉트박스                   | FE   |
+| Styled Components | Primitives + Tokens          | FE   |
+| Storybook 문서화  | 컴포넌트 문서                | FE   |
 
 ### Phase 4: 안정화 (2주)
 
-| 태스크 | 설명 | 담당 |
-|--------|------|------|
-| E2E 테스트 | 주요 시나리오 테스트 | FE |
-| 성능 최적화 | 번들 사이즈, 트리쉐이킹 | FE |
-| 문서화 | 사용 가이드, Contributing | FE |
-| Pilot 적용 | 실제 프로젝트 적용 | FE |
+| 태스크      | 설명                      | 담당 |
+| ----------- | ------------------------- | ---- |
+| E2E 테스트  | 주요 시나리오 테스트      | FE   |
+| 성능 최적화 | 번들 사이즈, 트리쉐이킹   | FE   |
+| 문서화      | 사용 가이드, Contributing | FE   |
+| Pilot 적용  | 실제 프로젝트 적용        | FE   |
 
 ---
 
 ## 10. 성공 지표
 
-| 지표 | 목표 | 측정 방법 |
-|------|------|----------|
-| 토큰 동기화 시간 | < 5분 | CI/CD 실행 시간 |
-| 디자인-코드 불일치 | 0건 | QA 리포트 |
-| 컴포넌트 재사용률 | > 80% | 코드 분석 |
-| 번들 사이즈 | < 50KB (core) | Bundlesize |
-| Storybook 커버리지 | 100% | 컴포넌트 수 대비 |
+| 지표               | 목표          | 측정 방법        |
+| ------------------ | ------------- | ---------------- |
+| 토큰 동기화 시간   | < 5분         | CI/CD 실행 시간  |
+| 디자인-코드 불일치 | 0건           | QA 리포트        |
+| 컴포넌트 재사용률  | > 80%         | 코드 분석        |
+| 번들 사이즈        | < 50KB (core) | Bundlesize       |
+| Storybook 커버리지 | 100%          | 컴포넌트 수 대비 |
 
 ---
 
 ## 11. 리스크 및 대응
 
-| 리스크 | 영향 | 대응 방안 |
-|--------|------|----------|
-| Figma API 변경 | 동기화 실패 | 버전 고정, 모니터링 알림 |
-| 토큰 충돌 | 스타일 불일치 | Hash 기반 검증, PR 리뷰 필수 |
-| 번들 사이즈 증가 | 성능 저하 | 트리쉐이킹, 청크 분리 |
-| Breaking Change | 앱 빌드 실패 | Changesets, Semver 준수 |
+| 리스크           | 영향          | 대응 방안                    |
+| ---------------- | ------------- | ---------------------------- |
+| Figma API 변경   | 동기화 실패   | 버전 고정, 모니터링 알림     |
+| 토큰 충돌        | 스타일 불일치 | Hash 기반 검증, PR 리뷰 필수 |
+| 번들 사이즈 증가 | 성능 저하     | 트리쉐이킹, 청크 분리        |
+| Breaking Change  | 앱 빌드 실패  | Changesets, Semver 준수      |
 
 ---
 
@@ -1051,13 +1045,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 ### B. 용어 정의
 
-| 용어 | 정의 |
-|------|------|
-| Design Token | 디자인 의사결정을 코드화한 값 (색상, 스페이싱 등) |
-| Primitive | 스타일 없이 동작만 제공하는 Headless 컴포넌트 |
-| Compound Component | 여러 하위 컴포넌트가 Context로 연결된 패턴 |
-| asChild | 자식 요소에 props를 전달하는 렌더링 위임 패턴 |
-| MCP | Model Context Protocol - AI와 외부 시스템 연동 프로토콜 |
+| 용어               | 정의                                                    |
+| ------------------ | ------------------------------------------------------- |
+| Design Token       | 디자인 의사결정을 코드화한 값 (색상, 스페이싱 등)       |
+| Primitive          | 스타일 없이 동작만 제공하는 Headless 컴포넌트           |
+| Compound Component | 여러 하위 컴포넌트가 Context로 연결된 패턴              |
+| asChild            | 자식 요소에 props를 전달하는 렌더링 위임 패턴           |
+| MCP                | Model Context Protocol - AI와 외부 시스템 연동 프로토콜 |
 
 ### C. 관련 문서
 

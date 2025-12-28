@@ -1,13 +1,9 @@
-import type {
-  FigmaVariablesResponse,
-  FigmaVariable,
-  FigmaVariableValue,
-} from "../api/types.js";
+import type { FigmaVariablesResponse, FigmaVariable, FigmaVariableValue } from '../api/types.js';
 
 export interface ParsedToken {
   name: string;
   value: string | number;
-  type: "color" | "number" | "string";
+  type: 'color' | 'number' | 'string';
   cssVar: string;
   description?: string;
 }
@@ -30,7 +26,7 @@ function figmaColorToHex(color: FigmaVariableValue): string {
     return `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})`;
   }
 
-  const hex = ((r << 16) | (g << 8) | b).toString(16).padStart(6, "0");
+  const hex = ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
   return `#${hex}`;
 }
 
@@ -39,24 +35,21 @@ function figmaColorToHex(color: FigmaVariableValue): string {
  */
 function toKebabCase(str: string): string {
   return str
-    .replace(/\//g, "-")
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[\s_]+/g, "-")
+    .replace(/\//g, '-')
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
     .toLowerCase();
 }
 
 /**
  * Parse Figma variable to token
  */
-function parseVariable(
-  variable: FigmaVariable,
-  defaultModeId: string
-): ParsedToken | null {
+function parseVariable(variable: FigmaVariable, defaultModeId: string): ParsedToken | null {
   const value = variable.valuesByMode[defaultModeId];
   if (!value) return null;
 
   // Skip alias references for now (they reference other variables)
-  if (value.type === "VARIABLE_ALIAS") {
+  if (value.type === 'VARIABLE_ALIAS') {
     return null;
   }
 
@@ -64,27 +57,27 @@ function parseVariable(
   const cssVar = `--ds-${name}`;
 
   switch (variable.resolvedType) {
-    case "COLOR":
+    case 'COLOR':
       return {
         name,
         value: figmaColorToHex(value),
-        type: "color",
+        type: 'color',
         cssVar,
         description: variable.description,
       };
-    case "FLOAT":
+    case 'FLOAT':
       return {
         name,
         value: value.value ?? 0,
-        type: "number",
+        type: 'number',
         cssVar,
         description: variable.description,
       };
-    case "STRING":
+    case 'STRING':
       return {
         name,
-        value: value.string ?? "",
-        type: "string",
+        value: value.string ?? '',
+        type: 'string',
         cssVar,
         description: variable.description,
       };
@@ -96,9 +89,7 @@ function parseVariable(
 /**
  * Parse Figma variables response into token collections
  */
-export function parseVariables(
-  response: FigmaVariablesResponse
-): ParsedTokenCollection[] {
+export function parseVariables(response: FigmaVariablesResponse): ParsedTokenCollection[] {
   const { variables, variableCollections } = response.meta;
   const collections: ParsedTokenCollection[] = [];
 

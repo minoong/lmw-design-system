@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Button as ButtonPrimitive } from "@lmw-design-system/primitives";
-import type { ButtonRootProps } from "@lmw-design-system/primitives";
-import styles from "./Button.module.scss";
+import * as React from 'react';
+import { Button as ButtonPrimitive } from '@lmw-design-system/primitives';
+import type { ButtonRootProps } from '@lmw-design-system/primitives';
+import styles from './Button.module.scss';
 
-export type ButtonVariant = "primary" | "secondary" | "ghost";
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 
 export interface ButtonProps extends ButtonRootProps {
   /**
@@ -33,24 +33,14 @@ export interface ButtonProps extends ButtonRootProps {
  * </Button>
  * ```
  */
-const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", className, ...props }, ref) => {
-    const variantClass = styles[variant];
-    const combinedClassName = [styles.button, variantClass, className]
-      .filter(Boolean)
-      .join(" ");
+const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonProps>(({ variant = 'primary', className, ...props }, ref) => {
+  const variantClass = styles[variant];
+  const combinedClassName = [styles.button, variantClass, className].filter(Boolean).join(' ');
 
-    return (
-      <ButtonPrimitive.Root
-        ref={ref}
-        className={combinedClassName}
-        {...props}
-      />
-    );
-  }
-);
+  return <ButtonPrimitive.Root ref={ref} className={combinedClassName} {...props} />;
+});
 
-ButtonRoot.displayName = "Button";
+ButtonRoot.displayName = 'Button';
 
 /**
  * Button Compound Component with styled variants

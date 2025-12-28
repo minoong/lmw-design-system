@@ -1,29 +1,29 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { resolve } from "path";
-import dts from "vite-plugin-dts";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   plugins: [
     react(),
     dts({
-      outDir: "dist",
-      tsconfigPath: "./tsconfig.json",
+      outDir: 'dist',
+      tsconfigPath: './tsconfig.json',
     }),
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "DesignSystemThemes",
-      formats: ["es", "cjs"],
-      fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'DesignSystemThemes',
+      formats: ['es', 'cjs'],
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
+          react: 'React',
+          'react-dom': 'ReactDOM',
         },
       },
     },
