@@ -1,0 +1,41 @@
+{
+  "name": "@lmw-design-system/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@lmw-design-system/components": "workspace:*",
+    "@lmw-design-system/icons": "workspace:*",
+    "@lmw-design-system/primitives": "workspace:*",
+    "@lmw-design-system/themes": "workspace:*",
+    "@lmw-design-system/tokens": "workspace:*",
+    "@lmw-design-system/typography": "workspace:*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@storybook/addon-essentials": "^8.4.0",
+    "@storybook/addon-interactions": "^8.4.0",
+    "@storybook/addon-links": "^8.4.0",
+    "@storybook/blocks": "^8.4.0",
+    "@storybook/react": "^8.4.0",
+    "@storybook/react-vite": "^8.4.0",
+    "@storybook/test": "^8.4.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^9.39.1",
+    "sass": "^1.97.1",
+    "storybook": "^8.4.0",
+    "typescript": "5.9.2",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,44 @@
+/**
+ * AUTO-GENERATED FILE - DO NOT EDIT
+ * Source: Figma Design System
+ * Generated: 2025-01-01T00:00:00Z
+ */
+
+[data-theme="light"],
+.theme-light {
+  /* Background */
+  --ds-bg-primary: var(--ds-color-white);
+  --ds-bg-secondary: var(--ds-color-gray-50);
+  --ds-bg-tertiary: var(--ds-color-gray-100);
+  --ds-bg-inverse: var(--ds-color-gray-900);
+
+  /* Foreground / Text */
+  --ds-fg-primary: var(--ds-color-gray-900);
+  --ds-fg-secondary: var(--ds-color-gray-600);
+  --ds-fg-tertiary: var(--ds-color-gray-400);
+  --ds-fg-inverse: var(--ds-color-white);
+  --ds-fg-disabled: var(--ds-color-gray-300);
+
+  /* Border */
+  --ds-border-primary: var(--ds-color-gray-200);
+  --ds-border-secondary: var(--ds-color-gray-100);
+  --ds-border-focus: var(--ds-color-primary-500);
+
+  /* Interactive */
+  --ds-interactive-primary: var(--ds-color-primary-500);
+  --ds-interactive-primary-hover: var(--ds-color-primary-600);
+  --ds-interactive-primary-active: var(--ds-color-primary-700);
+  --ds-interactive-secondary: var(--ds-color-gray-100);
+  --ds-interactive-secondary-hover: var(--ds-color-gray-200);
+
+  /* Status */
+  --ds-status-success: var(--ds-color-success);
+  --ds-status-warning: var(--ds-color-warning);
+  --ds-status-error: var(--ds-color-error);
+  --ds-status-info: var(--ds-color-info);
+
+  /* Shadow */
+  --ds-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ds-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ds-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

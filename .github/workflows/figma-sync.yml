@@ -1,0 +1,80 @@
+name: Figma Design System Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 1-5" # Weekdays at 9 AM KST (0 AM UTC)
+
+env:
+  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync from Figma
+        run: pnpm sync:figma
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [[ -n $(git status --porcelain packages/*/generated) ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build affected packages
+        if: steps.changes.outputs.changed == 'true'
+        run: pnpm turbo run build --filter='./packages/*'
+
+      - name: Create changeset
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          cat > .changeset/figma-sync-$(date +%s).md << EOF
+          ---
+          "@lmw-design-system/tokens": patch
+          "@lmw-design-system/typography": patch
+          "@lmw-design-system/icons": patch
+          "@lmw-design-system/themes": patch
+          ---
+
+          chore: sync design tokens from Figma
+          EOF
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(tokens): sync design tokens from Figma"
+          title: "Design System Sync"
+          body: |
+            ## Auto-generated from Figma
+
+            This PR contains updated design tokens synced from Figma.
+
+            ### Changed Files
+            ```
+            $(git status --porcelain packages/*/generated)
+            ```
+          branch: design-sync/auto-update
+          delete-branch: true
+          labels: |
+            design-system
+            auto-generated

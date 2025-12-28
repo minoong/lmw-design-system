@@ -5,7 +5,14 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "build:tokens": {
+      "outputs": ["generated/**"],
+      "inputs": ["figma.config.json"]
+    },
+    "sync:figma": {
+      "cache": false
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -13,8 +20,15 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "test": {
+      "dependsOn": ["build"]
+    },
     "dev": {
       "cache": false,
+      "persistent": true
+    },
+    "storybook": {
+      "dependsOn": ["^build"],
       "persistent": true
     }
   }

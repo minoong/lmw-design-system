@@ -1,0 +1,23 @@
+{
+  "figmaFileKey": "YOUR_FIGMA_FILE_KEY",
+  "packages": {
+    "tokens": "./packages/tokens/generated",
+    "typography": "./packages/typography/generated",
+    "icons": "./packages/icons/generated",
+    "themes": "./packages/themes/generated"
+  },
+  "sync": {
+    "variables": true,
+    "typography": true,
+    "icons": true
+  },
+  "naming": {
+    "prefix": "ds",
+    "caseStyle": "kebab"
+  },
+  "icons": {
+    "componentPrefix": "icon/",
+    "format": "svg",
+    "optimizeSvg": true
+  }
+}

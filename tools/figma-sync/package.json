@@ -1,0 +1,28 @@
+{
+  "name": "@lmw-design-system/figma-sync",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "figma-sync": "./dist/index.mjs"
+  },
+  "main": "./dist/index.mjs",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "sync:figma": "tsx src/index.ts",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.39.1",
+    "tsx": "^4.19.0",
+    "typescript": "5.9.2"
+  }
+}

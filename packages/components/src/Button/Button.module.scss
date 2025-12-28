@@ -1,0 +1,110 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-spacing-2);
+  border: none;
+  border-radius: var(--ds-radius-md);
+  font-family: var(--ds-font-family-sans);
+  font-weight: var(--ds-font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+
+  // Sizes
+  &[data-size="sm"] {
+    padding: var(--ds-spacing-1) var(--ds-spacing-3);
+    font-size: var(--ds-font-size-sm);
+    height: 32px;
+
+    [data-slot="icon"] {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &[data-size="md"] {
+    padding: var(--ds-spacing-2) var(--ds-spacing-4);
+    font-size: var(--ds-font-size-md);
+    height: 40px;
+
+    [data-slot="icon"] {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &[data-size="lg"] {
+    padding: var(--ds-spacing-3) var(--ds-spacing-6);
+    font-size: var(--ds-font-size-lg);
+    height: 48px;
+
+    [data-slot="icon"] {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    background-color: var(--ds-color-gray-200);
+    color: var(--ds-fg-disabled, var(--ds-color-gray-400));
+    cursor: not-allowed;
+    border-color: transparent;
+  }
+
+  // Focus state
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--ds-bg-primary, #fff),
+      0 0 0 4px var(--ds-border-focus, var(--ds-color-primary-500));
+  }
+
+  // Icon slot
+  [data-slot="icon"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+// Variants
+.primary {
+  background-color: var(--ds-interactive-primary, var(--ds-color-primary-500));
+  color: var(--ds-fg-inverse, var(--ds-color-white));
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--ds-interactive-primary-hover, var(--ds-color-primary-600));
+  }
+
+  &:active:not([data-disabled]) {
+    background-color: var(--ds-interactive-primary-active, var(--ds-color-primary-700));
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--ds-interactive-primary, var(--ds-color-primary-500));
+  border: 1px solid var(--ds-interactive-primary, var(--ds-color-primary-500));
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--ds-color-primary-50);
+  }
+
+  &:active:not([data-disabled]) {
+    background-color: var(--ds-color-primary-100);
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--ds-fg-secondary, var(--ds-color-gray-700));
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--ds-interactive-secondary, var(--ds-color-gray-100));
+  }
+
+  &:active:not([data-disabled]) {
+    background-color: var(--ds-interactive-secondary-hover, var(--ds-color-gray-200));
+  }
+}

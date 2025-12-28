@@ -1,0 +1,113 @@
+/**
+ * AUTO-GENERATED FILE - DO NOT EDIT
+ * Source: Figma Design System
+ * Generated: 2025-01-01T00:00:00Z
+ */
+
+:root {
+  // Font Families
+  --ds-font-family-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ds-font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+
+  // Font Sizes
+  --ds-font-size-xs: 12px;
+  --ds-font-size-sm: 14px;
+  --ds-font-size-md: 16px;
+  --ds-font-size-lg: 18px;
+  --ds-font-size-xl: 20px;
+  --ds-font-size-2xl: 24px;
+  --ds-font-size-3xl: 30px;
+  --ds-font-size-4xl: 36px;
+  --ds-font-size-5xl: 48px;
+
+  // Font Weights
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
+
+  // Line Heights
+  --ds-line-height-tight: 1.25;
+  --ds-line-height-normal: 1.5;
+  --ds-line-height-relaxed: 1.75;
+
+  // Letter Spacing
+  --ds-letter-spacing-tight: -0.025em;
+  --ds-letter-spacing-normal: 0;
+  --ds-letter-spacing-wide: 0.025em;
+}
+
+// Typography Mixins
+@mixin heading-base {
+  font-family: var(--ds-font-family-sans);
+  line-height: var(--ds-line-height-tight);
+}
+
+@mixin body-base {
+  font-family: var(--ds-font-family-sans);
+  line-height: var(--ds-line-height-normal);
+}
+
+// Typography Presets
+.ds-heading-1 {
+  @include heading-base;
+  font-size: var(--ds-font-size-5xl);
+  font-weight: var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+.ds-heading-2 {
+  @include heading-base;
+  font-size: var(--ds-font-size-4xl);
+  font-weight: var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+.ds-heading-3 {
+  @include heading-base;
+  font-size: var(--ds-font-size-3xl);
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.ds-heading-4 {
+  @include heading-base;
+  font-size: var(--ds-font-size-2xl);
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.ds-body-lg {
+  @include body-base;
+  font-size: var(--ds-font-size-lg);
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.ds-body-md {
+  @include body-base;
+  font-size: var(--ds-font-size-md);
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.ds-body-sm {
+  @include body-base;
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.ds-label {
+  @include body-base;
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+.ds-caption {
+  @include body-base;
+  font-size: var(--ds-font-size-xs);
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.ds-code {
+  font-family: var(--ds-font-family-mono);
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-regular);
+  line-height: var(--ds-line-height-relaxed);
+}

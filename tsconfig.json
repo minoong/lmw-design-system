@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/tokens" },
+    { "path": "packages/typography" },
+    { "path": "packages/icons" },
+    { "path": "packages/themes" },
+    { "path": "packages/primitives" },
+    { "path": "packages/components" },
+    { "path": "tools/figma-sync" },
+    { "path": "apps/web" },
+    { "path": "apps/docs" },
+    { "path": "apps/playground" },
+    { "path": "apps/storybook" }
+  ]
+}
